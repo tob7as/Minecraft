@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -1386,8 +1386,12 @@ namespace CapriDesktop
             string home = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             string roaming = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             List<string> places = new List<string> { Path.Combine(home, @".local\bin\claude.exe"), Path.Combine(roaming, @"npm\claude.cmd") };
-            foreach (string folder in (Environment.GetEnvironmentVariable("PATH") ?? "").Split(';'))
-                if (folder.Trim().Length > 0) { places.Add(Path.Combine(folder.Trim(), "claude.exe")); places.Add(Path.Combine(folder.Trim(), "claude.cmd")); }
+            // A PATH entry can be quoted or hold characters a path can't, so those are skipped rather than crashing her settings.
+            foreach (string entry in (Environment.GetEnvironmentVariable("PATH") ?? "").Split(';'))
+            {
+                string folder = entry.Trim().Trim('"');
+                if (folder.Length > 0 && folder.IndexOfAny(Path.GetInvalidPathChars()) < 0) { places.Add(Path.Combine(folder, "claude.exe")); places.Add(Path.Combine(folder, "claude.cmd")); }
+            }
             // The Claude desktop app keeps its own Claude Code, one folder per version: the newest is used.
             string bundled = Path.Combine(roaming, @"Claude\claude-code");
             try
