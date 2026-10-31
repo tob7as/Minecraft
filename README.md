@@ -1,16 +1,18 @@
 # Capri for Minecraft
 
+[![downloads](https://img.shields.io/github/downloads/tob7as/Minecraft-with-Capri-/total?label=downloads)](https://github.com/tob7as/Minecraft-with-Capri-/releases/latest)
+
 ## ⬇️ Download
 
-<a href="https://github.com/tob7as/Minecraft-with-Capri-/raw/main/addon/dist/Capri_Companion_v1.5.0.mcaddon"><img src="images/download-minecraft.png" alt="Download for Minecraft"></a>&nbsp;&nbsp;<a href="https://github.com/tob7as/Minecraft-with-Capri-/raw/main/download/Capri-X-Setup.exe"><img src="images/download-windows.png" alt="Download for Windows"></a>
+<a href="https://github.com/tob7as/Minecraft-with-Capri-/releases/latest/download/Capri_Companion_v1.5.0.mcaddon"><img src="images/download-minecraft.png" alt="Download for Minecraft"></a>&nbsp;&nbsp;<a href="https://github.com/tob7as/Minecraft-with-Capri-/releases/latest/download/Capri-X-Setup.exe"><img src="images/download-windows.png" alt="Download for Windows"></a>
 
 **Minecraft:** the add-on. Double-click it and Minecraft imports it. **Windows:** the Capri X app, so you can talk to her.
 
 | What | Download | |
 |---|---|---|
-| **Minecraft add-on** | [**Capri_Companion_v1.5.0.mcaddon**](https://github.com/tob7as/Minecraft-with-Capri-/raw/main/addon/dist/Capri_Companion_v1.5.0.mcaddon) | Double-click it, Minecraft imports it |
-| **Capri X app** (Windows) | [**Capri-X-Setup.exe**](https://github.com/tob7as/Minecraft-with-Capri-/raw/main/download/Capri-X-Setup.exe) | Run it to install |
-| App, no install | [Capri-X.exe](https://github.com/tob7as/Minecraft-with-Capri-/raw/main/download/Capri-X.exe) | Runs on its own |
+| **Minecraft add-on** | [**Capri_Companion_v1.5.0.mcaddon**](https://github.com/tob7as/Minecraft-with-Capri-/releases/latest/download/Capri_Companion_v1.5.0.mcaddon) | Double-click it, Minecraft imports it |
+| **Capri X app** (Windows) | [**Capri-X-Setup.exe**](https://github.com/tob7as/Minecraft-with-Capri-/releases/latest/download/Capri-X-Setup.exe) | Run it to install |
+| App, no install | [Capri-X.exe](https://github.com/tob7as/Minecraft-with-Capri-/releases/latest/download/Capri-X.exe) | Runs on its own |
 
 Click a link and the download starts. Windows may say it "protected your PC" because the app isn't signed: click **More info → Run anyway**. Then follow [Setup](#setup) below.
 
@@ -36,7 +38,7 @@ Two parts:
 
 ### 1. The add-on (needed)
 
-1. Download [`Capri_Companion_v1.5.0.mcaddon`](https://github.com/tob7as/Minecraft-with-Capri-/raw/main/addon/dist/Capri_Companion_v1.5.0.mcaddon) and double-click it. Minecraft opens and imports both packs.
+1. Download [`Capri_Companion_v1.5.0.mcaddon`](https://github.com/tob7as/Minecraft-with-Capri-/releases/latest/download/Capri_Companion_v1.5.0.mcaddon) and double-click it. Minecraft opens and imports both packs.
 2. Make or edit a world. Under **Behavior Packs** turn on **Capri Companion**. The resource pack comes with it.
 3. Join the world. You get **Capri's chip** in your inventory. Use it to open her Mainframe, then press **Summon**. You can also type `/capri summon`.
 4. Type `/capri help` to see everything she can do. Tap her to make her stay or follow. Sneak and tap her for her job menu.
@@ -47,7 +49,7 @@ Two parts:
 
 With the app, you can speak or type to her on your PC ("capri, chop some wood") and her body in the game does it.
 
-1. Download [`Capri-X-Setup.exe`](https://github.com/tob7as/Minecraft-with-Capri-/raw/main/download/Capri-X-Setup.exe) and run it. (Prefer no install? [`Capri-X.exe`](https://github.com/tob7as/Minecraft-with-Capri-/raw/main/download/Capri-X.exe) runs on its own.) Windows 10 or 11 only. Windows may say it "protected your PC" because the app isn't signed: click **More info → Run anyway**.
+1. Download [`Capri-X-Setup.exe`](https://github.com/tob7as/Minecraft-with-Capri-/releases/latest/download/Capri-X-Setup.exe) and run it. (Prefer no install? [`Capri-X.exe`](https://github.com/tob7as/Minecraft-with-Capri-/releases/latest/download/Capri-X.exe) runs on its own.) Windows 10 or 11 only. Windows may say it "protected your PC" because the app isn't signed: click **More info → Run anyway**.
    This version is its own app: it installs to `%LocalAppData%\CapriMC` and keeps its settings, keys and memories there, apart from any other Capri you have.
 2. Give her a brain (her AI) in the Mainframe. Both are free:
    - **Free key:** press **Free key** and follow the steps to get a free NVIDIA key. Works on any PC, needs internet.
