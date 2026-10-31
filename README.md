@@ -2,7 +2,9 @@
 
 [![downloads](https://img.shields.io/github/downloads/tob7as/Minecraft-with-Capri-/total?label=downloads)](https://github.com/tob7as/Minecraft-with-Capri-/releases/latest)
 
-**[⬇️ Download](#️-download) · [✨ What Capri X adds](#what-capri-x-adds) · [🎬 See her in action](#see-her-in-action) · [🛠️ Setup](#setup)**
+**[⬇️ Download](#️-download) · [✨ What Capri X adds](#what-capri-x-adds) · [🎬 See her in action](#see-her-in-action) · [🛠️ Setup](#setup) · [💬 Suggestions](#suggestions)**
+
+💬 **Got ideas for her? Add me on Discord to give me more suggestions:** `.tob1s`
 
 ## ⬇️ Download
 
@@ -134,6 +136,10 @@ Capri keeps her own notes about you: your name, what you like, things you ask he
 She has an Obsidian plugin too: **[Capri Neon City](https://github.com/tob7as/obsidian-Plugin)** turns your vault into a holographic 3D city, with Capri as the guide who chats, finds notes and flies you around. It works on its own, no app needed.
 
 ![Capri Neon City: an Obsidian vault shown as a 3D neon city, with Capri chatting in the corner](images/capri-neon-city.webp)
+
+## Suggestions
+
+Got an idea for something Capri should do, or found a bug? **Add me on Discord to give me more suggestions:** `.tob1s`
 
 ## Credit
 
