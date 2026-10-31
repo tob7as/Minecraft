@@ -44,6 +44,15 @@ powershell -ExecutionPolicy Bypass -File ci\build-windows.ps1
 This makes `out\windows\Capri.exe` and `Capri-Setup.exe`.
 </details>
 
+## Her notes, and Obsidian
+
+Capri keeps her own notes about you: your name, what you like, things you ask her to remember. Tell her "remember that I like..." or press **Get to know me** in the Mainframe. She reads her notes when you chat, and you can open, edit or delete them any time.
+
+- **By default** the notes are a plain file on your PC (`me.md` in her data folder). A new install starts with empty notes.
+- **In Obsidian:** in the Mainframe, open **Settings → More settings → Memory vault**, pick one of your Obsidian vaults, and she keeps her notes in a **Capri Memories** note inside it. You can then read and edit what she remembers in Obsidian like any other note.
+
+She has an Obsidian plugin too: **[Capri Neon City](https://github.com/tob7as/obsidian-Plugin)** turns your vault into a holographic 3D city, with Capri as the guide who chats, finds notes and flies you around. It works on its own, no app needed.
+
 ## Credit
 
 Capri is made by Lachy: <https://github.com/lachydotmcg/capri-desktop>. Capri's art and animations are by her artist, who prefers to stay private. The app is shared under the original project's PolyForm Noncommercial License 1.0.0 ([app/LICENSE.md](app/LICENSE.md)). Those terms also cover the add-on, since it uses Capri's character.
