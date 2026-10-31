@@ -10,6 +10,17 @@
 
 Click a link and the download starts. Windows may say it "protected your PC" because the app isn't signed: click **More info → Run anyway**. Then follow [Setup](#setup) below.
 
+## See her in action
+
+![Capri in Minecraft: say hello and she answers in a chat bubble, with her body standing beside you](images/capri-in-game.webp)
+
+Click a clip to watch it with sound.
+
+| | |
+|---|---|
+| [![Capri dancing](images/dancing.webp)](videos/dancing.mp4)<br>**Dancing:** "drop the beat!!" | [![Capri fighting](images/fighting.webp)](videos/fighting.mp4)<br>**Fighting:** she takes on mobs with you |
+| [![Capri at day and night](images/day-and-night.webp)](videos/day-and-night.mp4)<br>**Day and night:** she reacts to sunrise, nightfall and sleep | [![Capri mining](images/mining.webp)](videos/mining.mp4)<br>**Mining:** "digging down for shiny stuff now" |
+
 Two parts:
 
 - **[addon/](addon/)**: the Capri Companion add-on for Minecraft Bedrock (1.26.50+). Grab `addon/dist/Capri_Companion_v1.5.0.mcaddon` and double-click it to import. Everything she can do is in [addon/README.md](addon/README.md).
