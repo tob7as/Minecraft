@@ -6,7 +6,7 @@ Capri, the neon-pink hologram netrunner AI, as a companion that follows you arou
 
 ## Install
 
-1. Double-click `dist/Capri_Companion_v1.5.0.mcaddon`. Minecraft imports both packs.
+1. Download [Capri_Companion_v1.5.0.mcaddon](https://github.com/tob7as/Minecraft-with-Capri-/releases/latest/download/Capri_Companion_v1.5.0.mcaddon) and double-click it. Minecraft imports both packs.
 2. Open a world, go to **Edit → Behavior Packs**, and activate **Capri Companion | Behavior**. The resource pack comes along with it.
 3. Join the world and type `/capri summon`, or use the **Spawn Capri** egg from the creative inventory. She tears in through a neon-pink rift.
 4. The first time you join, you get **Capri's Neural Chip**. Use it (right-click / hold) to open her Mainframe. It stays in your inventory when you die. Lost it? `/capri chip`.
@@ -148,33 +148,6 @@ Styled after the Capri X Mainframe: dark panels, red-pink headings, cyan for ON.
 | `/function capri/help` | Lists all of this in chat. |
 | `/scriptevent capri:say <text>` | She says `<text>` in chat. This is the hook for the Capri X desktop app bridge. |
 
-## Rebuilding
+## Licence
 
-Blender 5.2 runs the model generator. The other tools are plain Python.
-
-```bash
-powershell -File tools/preview.ps1
-```
-
-That rebuilds `build_model.py` and renders `previews/sheet.png`.
-
-- `python tools/build_anims.py` writes the animations, controller, particles and particle texture.
-- `python tools/validate.py` runs the static checks.
-- `python tools/package.py` writes `dist/*.mcpack` and `*.mcaddon`.
-- `tests/harness.html` runs the script against a mocked `@minecraft/server`. Serve the project folder with `python -m http.server 8765`, then open `http://localhost:8765/tests/harness.html`.
-
-## Testing status (honest)
-
-**Checked:**
-- `validate.py` passes: JSON, wiring, every Molang property read, UVs, events, particles, pose ids and lengths, manifests.
-- The mocked-script harness passes all 134 checks, two runs in a row, including (new in 1.5) help mode only with the chip in hand, no fog, the energy ball, any item into her backpack and the backpack page, crafting a pickaxe and a crafting table, resuming a hut, the ore sniffer glow, the diamond celebration, creeper detector, tiny bodyguard, inventory, food and sleep warnings, the pocket torch, where's my stuff, the home beacon, sitting on a crafting table and judging a chest of dirt; (new in 1.4) the full nuke sequence with camera shake and flash, the orbital laser, glitch dash, day and night, and teleporting players, and (new in 1.3) the chip on first join with keep-on-death, the Mainframe, its Link page and ability switches, zap with its cooldown, brain unplug, the nuke's no-damage knockback, threat scan, home, sleeping and waking with you, boats, the idle dance stopping when looked at, regeneration and a house with a log frame, glass windows and a torch. Before 1.3 it already passed 67 checks, several runs in a row, including chopping, mining with an ore vein, building, help mode, handing over blocks, the job menu, app commands, `/capri` and `/capri help`, farming with replanting, torches, the ore scan, cooking, storing in a chest, loot pickup, overclock, clearing, dancing and guard duty. It covers summon, binding, egg claim, leash blink, quickhacks, blink-strike, creeper handling, healing, stay/follow, stranger taps, the `say` bridge, death and reboot, idle glitches and chat, and zero script warnings.
-- Model and poses were checked in Blender renders.
-
-**Not yet checked in a real Minecraft client.** Please turn on **Settings → Creator → Content Log** and look for:
-
-1. Any red errors in the Content Log (components, sounds, particles, script).
-2. Whether the new hologram model, its glow (meant to be subtle) and the chip icon look right, and whether the particles (rift, fragments, orb, confetti, bolt, notes, Z's) show.
-3. Whether the chip's use opens the Mainframe (custom items fire the use event without extra components on current versions, but this is the bit most likely to need a tweak), and whether mobs really go for her and she fits in a boat.
-4. Whether follow, stay and the teleport-to-owner behaviour feel good.
-5. Whether quickhacks, blink-strikes and healing fire, and whether the balance is too strong or too weak.
-6. Whether the chat lines appear, and whether there are too many or too few.
+The Capri Companion add-on is not open source. Copyright 2026 tob7as, all rights reserved: you may download it and play it, but not copy, change, re-upload or share its files. Capri's character and art belong to Lachy and her artist (see the [main page](../README.md#credit)).
