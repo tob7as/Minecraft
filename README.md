@@ -34,6 +34,39 @@ Two parts:
 - **[addon/](addon/)**: the Capri Companion add-on for Minecraft Bedrock (1.26.50+). Grab `addon/dist/Capri_Companion_v1.5.0.mcaddon` and double-click it to import. Everything she can do is in [addon/README.md](addon/README.md).
 - **[app/](app/)**: Capri X, a fork of the Capri desktop companion with a Minecraft link. Say "capri, chop some wood" and her body in the game does it. Ready to run from [download/](download/).
 
+## What Capri X adds
+
+Capri X is built on [Lachy's Capri](https://github.com/lachydotmcg/capri-desktop) (v0.7.7) and keeps all of it. On top, it adds:
+
+**🎮 Minecraft**
+- **She plays Minecraft Bedrock with you.** Connect with `/connect localhost:19131` and her body in the game follows your orders.
+- **Voice orders for her body:** chop wood, mine, fight, build, dance, craft, find your stuff, clear monsters around you, teleport players, set day or night, plus the orbital laser and energy ball. If no phrase matches, her brain picks the job.
+- **Discord shows she's playing Minecraft** while she's in the game.
+
+**🧠 Her brain**
+- **Think with Claude:** use Claude Code as her brain, signed in with your Claude account. No API key. Pick Haiku, Sonnet or Opus, and see your usage.
+- **Claude link:** the Claude app can use Capri's tools (talk, see your screen, music, apps, her notes, mouse and keyboard). You choose which in **Setup & options**.
+- NVIDIA "thinking" models and slower cloud brains get time to finish instead of failing.
+
+**🛠️ New things she can do**
+- **Timers and reminders:** "set a timer for 10 minutes", and she tells you out loud when it's up.
+- **Mini games:** noughts and crosses, and rock paper scissors, in their own little windows.
+- **Reads your Discord messages** when you ask her to check someone's DMs or a channel.
+- **Drawing and painting:** asking her to draw goes to her mouse and keyboard.
+
+**⚙️ More settings**
+- **Compliment my music:** she hypes up the song that's playing.
+- **React to Twitch chat:** she reads your stream chat like a viewer and reacts out loud.
+- **Vibe:** how lively she is.
+- **Clip that:** set your clip key (ShadowPlay, Medal, OBS or Game Bar), then say "Capri, clip that".
+- **Weather:** set your town and ask "what's the weather?", in °C or °F.
+- **Memory vault:** keep her notes in your Obsidian vault.
+
+**💬 Her personality and voice**
+- Closer to her **Edgerunners 2** personality, and she texts bubbly like the Capri in [Capri Neon City](https://github.com/tob7as/obsidian-Plugin).
+- **"Hey Capri":** she only answers when her name is said, only her name pauses her screen comments, and comments come back after 30 seconds of quiet.
+- Her voice server makes each sentence in one go, so she starts talking sooner.
+
 ## Setup
 
 ### 1. The add-on (needed)
