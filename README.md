@@ -2,6 +2,8 @@
 
 ## ⬇️ Download
 
+<a href="https://github.com/tob7as/Minecraft/raw/main/download/Capri-X-Setup.exe"><img src="images/download-windows.png" alt="Download for Windows"></a>
+
 | What | Download | |
 |---|---|---|
 | **Minecraft add-on** | [**Capri_Companion_v1.5.0.mcaddon**](https://github.com/tob7as/Minecraft/raw/main/addon/dist/Capri_Companion_v1.5.0.mcaddon) | Double-click it, Minecraft imports it |
@@ -14,12 +16,14 @@ Click a link and the download starts. Windows may say it "protected your PC" bec
 
 ![Capri in Minecraft: say hello and she answers in a chat bubble, with her body standing beside you](images/capri-in-game.webp)
 
-Click a clip to watch it with sound.
+Click a clip, then **View raw**, to download it with sound.
 
 | | |
 |---|---|
 | [![Capri dancing](images/dancing.webp)](videos/dancing.mp4)<br>**Dancing:** "drop the beat!!" | [![Capri fighting](images/fighting.webp)](videos/fighting.mp4)<br>**Fighting:** she takes on mobs with you |
 | [![Capri at day and night](images/day-and-night.webp)](videos/day-and-night.mp4)<br>**Day and night:** she reacts to sunrise, nightfall and sleep | [![Capri mining](images/mining.webp)](videos/mining.mp4)<br>**Mining:** "digging down for shiny stuff now" |
+
+🎙️ **You can tell her what to do with your voice!** With the Capri X app, just say "Capri, ..." out loud, like "Capri, chop some wood", and she does it in the game.
 
 Two parts:
 
