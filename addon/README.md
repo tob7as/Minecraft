@@ -6,7 +6,7 @@ Capri, the neon-pink hologram netrunner AI, as a companion that follows you arou
 
 ## Install
 
-1. Download [Capri_Companion_v1.5.0.mcaddon](https://github.com/tob7as/Minecraft-with-Capri-/releases/latest/download/Capri_Companion_v1.5.0.mcaddon) and double-click it. Minecraft imports both packs.
+1. Download [Capri_Companion_v1.6.0.mcaddon](https://github.com/tob7as/Minecraft-with-Capri-/releases/latest/download/Capri_Companion_v1.6.0.mcaddon) and double-click it. Minecraft imports both packs.
 2. Open a world, go to **Edit → Behavior Packs**, and activate **Capri Companion | Behavior**. The resource pack comes along with it.
 3. Join the world and type `/capri summon`, or use the **Spawn Capri** egg from the creative inventory. She tears in through a neon-pink rift.
 4. The first time you join, you get **Capri's Neural Chip**. Use it (right-click / hold) to open her Mainframe. It stays in your inventory when you die. Lost it? `/capri chip`.
@@ -64,7 +64,7 @@ Every job also works as `/capri <job>` (for example `/capri build hut`) or as `/
 
 She walks, follows and fights using normal mob AI. For jobs she glitch-teleports to each work spot, because Bedrock's scripting can't steer a mob's pathfinding.
 
-**From the Capri X app:** when More settings → MINECRAFT is connected, you can ask her by voice or typing ("chop some wood", "go mining", "build a house", "harvest the farm", "scan for diamonds", "light this place up", "guard the base", "overclock me", "cook the beef", "put everything in the chest", "what can you do in minecraft", "come here", "stop mining"). She does it in the game and answers you. While she's connected, your Discord status says "Playing Minecraft", plus what she's doing in it.
+**From the Capri X app:** when More settings → MINECRAFT is connected, you can ask her by voice or typing ("chop some wood", "go mining", "build a house", "harvest the farm", "scan for diamonds", "light this place up", "guard the base", "overclock me", "cook the beef", "put everything in the chest", "what can you do in minecraft", "come here", "stop mining", "make it rain", "go hunt", "collect some sand", "take me to a desert", "teleport me to you"). Common orders get an instant answer, so her brain doesn't have to think about them. She does it in the game and answers you. While she's connected, your Discord status says "Playing Minecraft", plus what she's doing in it.
 
 ### Quickhacks (every 9 s, up to 16 blocks)
 
@@ -81,6 +81,21 @@ When a monster is 4–13 blocks away, she breaks into pink and green fragments (
 ### Brain unplug
 
 When 3+ monsters close in (or on `/capri unplug`), she hacks up to five of them: green static, floating question marks and a glitched note-block tune, and they spin and stagger about with Slowness and Weakness for 4 seconds. "Oops! I unplugged their braincells!" Bedrock's scripting can't wipe a mob's target, so this works by making them spin and wander rather than truly forgetting you.
+
+### New in 1.6
+
+- **Crafts almost anything** (`/capri craft iron pickaxe`, `/capri craft 16 torches`, `/capri craft armor`, or the chip's **Craft** page): tools and weapons of every tier, all four armour pieces (or a full set), bows, arrows, shields, buckets, shears, compasses, beds, boats, doors, fences, lanterns, rails, pistons, hoppers, TNT, food like bread, cake and golden apples, workstations, storage blocks and more. She makes the parts herself (planks, sticks, slabs, paper, nuggets). The Craft page groups recipes and ticks the ones she can make right now, or type anything.
+- **Hunts for food** (`/capri hunt`, or say "go hunt", "i'm hungry"): cows, pigs, chickens, sheep and rabbits nearby. She always leaves two of each kind so they can breed, never touches babies, named animals or pets, and cooks the meat if she has fuel.
+- **Collects things** (`/capri collect sand`, `/capri collect "64 stone"`, "get me some iron"): dirt, sand, gravel, stone, clay, logs, ores, flowers, pumpkins and more. Natural blocks only, never anything that could be part of a build, and never under your feet.
+- **Torches**: hand her torches (or coal) and she lights her mine tunnel as she digs, and puts torches down behind you in dark caves.
+- **Teleports**: you to her (`/capri tp capri`), you to a player, a player to you, or one player to another or to her (`/capri send "steve alex"`). All in the chip's new **Warp** page.
+- **Biome warp** (`/capri biome desert`, "take me to a jungle"): the nearest desert, jungle, snow, cherry grove, mushroom island and more. She drops you in with slow falling and puts you on the ground.
+- **Weather**: `/capri rain`, `/capri thunder`, `/capri sunny`, or the chip's new **Sky** page.
+- **100 health, shown over her head**: a bar under her name that goes green, yellow, red. She regenerates 2 health every 4 seconds out of combat.
+- **Redstone heals her**: tap her holding redstone dust for +10, or a block of redstone to fill her up.
+- **A new voice line**, now and then when you kill a monster. Rare on purpose.
+- **A better chip menu**: her health bar, the time of day, the new Warp and Sky pages, and the Craft page by category.
+- **With the Capri X app**, common orders get an instant answer ("making it day now choom!") without waiting on her brain.
 
 ### New in 1.5
 
@@ -122,15 +137,17 @@ Styled after the Capri X Mainframe: dark panels, red-pink headings, cyan for ON.
 - **Abilities**: a switch for each one: quickhacks, behind you, zap, brain unplug, nuke, emergency patch, mobs can target her, auto-loot, sleep with you, ride in your boat, idle dance, pranks, chatter, orbital laser, glitch dash, energy ball, all ten helpers, sitting and chest snooping. Saved per player.
 - **Skills**: everything she can do and every command.
 - **Jobs**: her job menu.
+- **Warp**: beam to her or a player, bring or send players, or warp to a biome.
+- **Sky**: day, night, rain, thunder or clear skies.
 - **Link**: how to let the Capri X app control her: turn on Minecraft in Capri X, turn on cheats, type `/connect localhost:19131` (turn off Require Encrypted Websockets if it won't connect).
 - **Backpack**: every stack she carries; tap to take.
-- **Craft**: one button per thing she can craft.
-- **Status**: every cooldown, your Mining Buddy ore count, her modes and any unfinished build.
+- **Craft**: recipes by kind (tools, armour, light and redstone, food, home, blocks), with a tick on what she can make now, or type anything.
+- **Status**: her health bar, every cooldown, your Mining Buddy ore count, her modes and any unfinished build.
 - **Summon / Recall**.
 
 ### Other notes
 
-- She has 20 health like a player, and monsters target and attack her like a player (switch that off in the chip). Out of combat she regenerates 1 health every 4 seconds. If she dies she reboots.
+- She has 100 health, shown as a bar over her head, and monsters target and attack her like a player (switch that off in the chip). Out of combat she regenerates 2 health every 4 seconds. Redstone heals her (dust +10, a block fills her up), and so do cookies, berries and cake. If she dies she reboots.
 - Players can't hurt her, so there's no friendly fire.
 - She takes no fall, suffocation or drowning damage.
 - When idle she flickers and glitches, sometimes hops a couple of blocks, and chats every 4–8 minutes.
@@ -140,7 +157,7 @@ Styled after the Capri X Mainframe: dark panels, red-pink headings, cyan for ON.
 | Command | Does |
 |---|---|
 | `/capri help` | Lists everything she can do, in chat. |
-| `/capri <job>` | Any job above: `wood`, `mine`, `farm`, `build hut`, `clear`, `light`, `scan`, `guard`, `boost`, `pickup`, `cook`, `store`, `give`, `bag`, `helper`, `dance`, `hack`, `unplug`, `nuke`, `threats`, `laser`, `ball`, `craft <item>`, `stuff`, `day`, `night`, `tp <name>`, `bring <name>`, `boat`, `sleep`, `wake`, `sethome`, `home`, `chip`, `stay`, `follow`, `recall`, `stop`, `summon`. |
+| `/capri <job>` | Any job above: `wood`, `mine`, `farm`, `build hut`, `clear`, `light`, `scan`, `guard`, `boost`, `pickup`, `cook`, `store`, `give`, `bag`, `helper`, `dance`, `hack`, `unplug`, `nuke`, `threats`, `laser`, `ball`, `craft <item>`, `hunt`, `collect <block>`, `stuff`, `day`, `night`, `rain`, `thunder`, `sunny`, `tp <name|capri>`, `bring <name>`, `send <name> <name|capri>`, `biome <name>`, `boat`, `sleep`, `wake`, `sethome`, `home`, `chip`, `stay`, `follow`, `recall`, `stop`, `summon`. |
 | `/function capri/summon` | Call her. If she already exists, recalls her instead. |
 | `/function capri/recall` | Blink her to you and set her to follow. |
 | `/function capri/stay`, `capri/follow` | Same as tapping her. |

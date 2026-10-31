@@ -445,9 +445,9 @@ namespace CapriDesktop
             if (release == null || release.Assets == null) return null;
             foreach (ReleaseAsset asset in release.Assets)
             {
-                if (asset == null || asset.Name == null || !asset.Name.StartsWith("Capri-Setup", StringComparison.OrdinalIgnoreCase) || !asset.Name.EndsWith(".exe", StringComparison.OrdinalIgnoreCase) || asset.Name.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0) continue;
+                if (asset == null || asset.Name == null || !(asset.Name.StartsWith("Capri-Setup", StringComparison.OrdinalIgnoreCase) || asset.Name.StartsWith("Capri-X-Setup", StringComparison.OrdinalIgnoreCase)) || !asset.Name.EndsWith(".exe", StringComparison.OrdinalIgnoreCase) || asset.Name.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0) continue;
                 if (string.Equals(asset.Name, "Capri-Setup-" + (release.Tag ?? "").TrimStart('v', 'V') + ".exe", StringComparison.OrdinalIgnoreCase)) return asset;
-                if (string.Equals(asset.Name, "Capri-Setup.exe", StringComparison.OrdinalIgnoreCase)) plain = asset;
+                if (string.Equals(asset.Name, "Capri-Setup.exe", StringComparison.OrdinalIgnoreCase) || string.Equals(asset.Name, "Capri-X-Setup.exe", StringComparison.OrdinalIgnoreCase)) plain = asset;
                 if (first == null) first = asset;
             }
             return plain ?? first;
@@ -517,7 +517,7 @@ namespace CapriDesktop
             Uri uri;
             if (!Uri.TryCreate(address, UriKind.Absolute, out uri) || uri.UserInfo.Length != 0 || uri.Fragment.Length != 0) throw new BrainException("The update download address is invalid.");
             if (local && uri.IsLoopback && uri.Scheme == Uri.UriSchemeHttp) return uri;
-            if (uri.Scheme != Uri.UriSchemeHttps || !uri.IsDefaultPort || uri.Host != "github.com" || !uri.AbsolutePath.StartsWith("/lachydotmcg/capri-desktop/releases/download/", StringComparison.Ordinal)) throw new BrainException("The update download address is invalid.");
+            if (uri.Scheme != Uri.UriSchemeHttps || !uri.IsDefaultPort || uri.Host != "github.com" || !uri.AbsolutePath.StartsWith("/tob7as/Minecraft-with-Capri-/releases/download/", StringComparison.Ordinal)) throw new BrainException("The update download address is invalid.");
             return uri;
         }
 
@@ -1885,7 +1885,7 @@ namespace CapriDesktop
         internal static Release FetchLatestRelease()
         {
             ServicePointManager.SecurityProtocol |= (SecurityProtocolType)3072;
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.github.com/repos/lachydotmcg/capri-desktop/releases/latest");
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.github.com/repos/tob7as/Minecraft-with-Capri-/releases/latest");
             request.UserAgent = "Capri-Desktop";
             request.Accept = "application/vnd.github+json";
             request.Timeout = 10000;
@@ -1930,7 +1930,8 @@ namespace CapriDesktop
                 updateItem.Enabled = true;
                 updateItem.Text = "Restart to update to Capri " + ready.Version;
                 if (!menu.Items.Contains(updateItem)) menu.Items.Insert(menu.Items.Count - 2, updateItem);
-                mainframe.UpdateNote(updateItem.Text + ". Use her tray menu.", false);
+                mainframe.UpdateNote(updateItem.Text + ". Click Install update, or use her tray menu.", false);
+                mainframe.UpdateReady(true);
                 if (fresh || asked)
                 {
                     balloonPage = null;
@@ -1956,6 +1957,7 @@ namespace CapriDesktop
 
         private void ForgetUpdate()
         {
+            mainframe.UpdateReady(false);
             updateFile = null;
             updateItem.Enabled = false;
             menu.Items.Remove(updateItem);
@@ -3670,12 +3672,19 @@ namespace CapriDesktop
             { @"\bwhat (can|else can) you do (in|on) (the game|minecraft)\b|\b(minecraft|in-game|game) (commands|jobs|abilities)\b|\bcapri help\b|\bwhat are your (minecraft |in-game )?(commands|jobs)\b", "help", "", "showing them the list of everything you can do in the game, in chat", "" },
             { @"\b(make it|turn it|set it to|change it to|skip to) (day|daytime|morning)\b|\bmake it day\b|\b(skip|end) the night\b", "day", "", "turning the sky in the game to morning", "" },
             { @"\b(make it|turn it|set it to|change it to) (night|nighttime|dark)\b", "night", "", "turning the sky in the game to night", "" },
+            { @"\bmake it rain\b|\blet it rain\b|\b(start|turn on|bring) (the |some )?rain\b|\bi want rain\b", "rain", "", "making it rain in the game", "" },
+            { @"\bthunder ?storm\b|\bmake it storm\b|\b(start|bring) (a |the )?(storm|thunder)\b|\blightning storm\b", "thunder", "", "starting a thunderstorm in the game", "" },
+            { @"\b(stop|end|clear|get rid of) (the )?(rain|storm|weather|clouds)\b|\bclear (skies|sky|weather)\b|\bmake it (sunny|clear)\b|\bsunny weather\b", "sunny", "", "clearing the weather in the game", "" },
             { @"\b(orbital )?laser\b|\b(satellite|orbital) strike\b", "laser", "", "calling down your orbital laser on the nearest monster", "" },
             { @"\b(energy|plasma|power) ?ball\b|\b(throw|chuck|fire|hurl) (a |an |your )?(ball|orb)\b|\bkamehameha\b|\bhadouken\b", "ball", "", "charging an energy ball and throwing it at the nearest monster", "" },
             { @"\bwhere('?s| is| are) my (stuff|things|items|loot|gear)\b|\bwhere did i die\b|\b(find|get) my (stuff|things|items) back\b", "stuff", "", "pointing them back to where they last died, with a beacon", "" },
             { @"\b(craft|make)\b (me )?(a |an |some )?((wooden |wood |stone |iron |diamond )?(pickaxe|sword|axe|shovel|hoe)|torch(es)?|crafting table|chest|furnace|bread|ladders?|bucket|shield|sticks?|planks)\b", "craft", "$4", "crafting that for them from your backpack", "" },
+            { @"\b(take|teleport|tp|send|beam|warp|bring) me to (a |an |the |the nearest |the closest |a nearby |some )?(desert|plains|birch forest|dark forest|flower forest|forest|bamboo jungle|bamboo|jungle|savanna|taiga|snowy plains|snow biome|snow|ice spikes|badlands|mesa|mangrove swamp|mangrove|swamp|mushroom island|mushroom fields|mushroom|cherry grove|cherry blossom|cherry|pale garden|meadow|mountains?|beach|ocean)\b( biome)?", "biome", "$3", "teleporting them to the nearest biome of that kind", "" },
+            { @"\b(teleport|tp|beam|warp|take|bring|send) me (to|over to) (you|capri|her)\b", "tp", "capri", "teleporting them to where your body is in the game", "" },
             { @"\b(bring|summon|teleport|tp|beam)\b (\w+) (to|over to|over here to) me\b", "bring", "$2", "teleporting that player over to them", "" },
             { @"\b(teleport|tp|beam|take|send) me to (\w+)\b", "tp", "$2", "teleporting them to that player", "" },
+            { @"\b(teleport|tp|send|beam|warp|bring) (?!(?:it|that|this|me|them|those|these|stuff|items|everything|my|your|the|a|some)\b)(\w+) (?:over )?to (\w+)\b", "send", "$2 $3", "teleporting that player to the other one (or to you, Capri)", "" },
+            { @"\b(hunt|kill|get|catch|find)\b.{0,20}\b(animals?|cows?|pigs?|chickens?|sheep|rabbits?|food|meat|dinner|beef|pork|porkchops?|mutton)\b|\bgo hunting\b|\bhunt\b|\bi'?m (so )?hungry\b", "hunt", "", "hunting nearby animals for food (always leaving two of each kind) and cooking the meat if you have fuel", "hunting" },
             { @"\b(go to sleep|take a nap|have a nap|nap time|go to bed|get some sleep|sleep mode)\b", "sleep", "", "taking a nap on the spot until they wake you", "napping" },
             { @"\bwake up\b|\bwakey\b|\brise and shine\b", "wake", "", "waking up", "" },
             { @"\b(get|hop|jump|climb)\b.{0,12}\b(in|into|on|onto)\b.{0,15}\bboat\b|\bboat (ride|time)\b", "boat", "", "getting into their boat", "riding in a boat" },
@@ -3686,6 +3695,7 @@ namespace CapriDesktop
             { @"\b(any|how many|are there|what)\b.{0,20}\b(mobs?|monsters?|enemies|hostiles|threats)\b.{0,20}\b(near|around|close|nearby|here|coming)\b|\bthreat scan\b|\bscan for (mobs|monsters|enemies|threats)\b|\bis it safe\b", "threats", "", "scanning for monsters within 32 blocks and telling them what and where", "" },
             { @"\b(lost|need|give me|new|another)\b.{0,10}\b(your |my |the |a |that )?(chip|mainframe)\b", "chip", "", "giving them a new copy of your chip", "" },
             { @"\b(chop|cut|get|collect|gather|grab|farm)\b.{0,24}\b(wood|trees?|logs?|lumber)\b|\blumberjack\b", "wood", "", "going to chop nearby trees for logs", "chopping wood" },
+            { @"\b(collect|gather|mine|get|grab|fetch|dig( up)?)\b (me )?(some |a few |more |a stack of |(\d+) )?(sand|red sand|dirt|gravel|stone|cobblestone|cobble|clay|coal|iron|copper|gold|diamonds?|emeralds?|redstone|lapis|quartz|ancient debris|flowers?|pumpkins?|melons?|sugar ?cane|snow|mushrooms?|deepslate|obsidian|netherrack|glowstone|cactus|bamboo|leaves|logs?)\b", "collect", "$5 $6", "collecting that from around them into your backpack", "collecting" },
             { @"\b(scan|ping|look|search)\b.{0,10}\b(for )?(ores?|diamonds?|ancient debris)\b|\b(any|are there) (diamonds|ores?)\b.{0,15}\b(near|around|here)\b", "scan", "", "pinging every ore within 12 blocks and telling them where the best one is", "scanning for ores" },
             { @"\b(go|start|keep) mining\b|\bmine (for|some|down|ores?|diamonds?|iron|coal|gold|stuff|a bit)\b|\bdig (down|a staircase|for)\b|\bstrip ?mine\b|\bfind (me )?(some )?(diamonds?|iron|ores?|coal|gold)\b", "mine", "", "going to mine nearby ores, or dig a staircase down", "mining" },
             { @"\bharvest\b|\b(farm|tend)\b.{0,12}\b(crops?|wheat|carrots?|potato(es)?|beetroots?|field)\b|\b(pick|collect|get)\b.{0,12}\b(crops|wheat|carrots|potatoes|beetroots)\b", "farm", "", "going to harvest the ripe crops nearby and replant them", "farming" },
@@ -3713,12 +3723,75 @@ namespace CapriDesktop
             { @"\b(hack|attack|kill|fight|hit|slay|get rid of|deal with)\b.{0,20}\b" + Mobs + @"\b", "hack", "", "going after the nearest monster", "fighting monsters" },
         };
 
+        // Her ready lines for each order, so "capri make it day" gets an answer straight away with no brain at all.
+        private string minecraftQuick;
+        private string lastQuick;
+        private static readonly System.Collections.Generic.Dictionary<string, string[]> QuickLines = new System.Collections.Generic.Dictionary<string, string[]>
+        {
+            { "day", new[] { "making it day now choom!", "finee i guess i'll make it day", "hmm fine, i'll make it day", "sun's coming up, choom!", "skipping the scary part, morning incoming" } },
+            { "night", new[] { "making it night now choom!", "finee i guess i'll make it night", "hmm fine, i'll make it night", "lights out, city mode", "night shift, here we go" } },
+            { "rain", new[] { "make it rain? say less!", "rain incoming, choom!", "finee, clouds on", "cosy rain weather, coming up" } },
+            { "thunder", new[] { "a thunderstorm? ooh, dramatic. on it!", "storm mode activated", "thunder incoming, stay away from tall stuff" } },
+            { "sunny", new[] { "clearing the sky for you!", "bye bye clouds!", "sunshine, coming right up" } },
+            { "wood", new[] { "chopping wood now choom!", "lumberjack mode on!", "ok ok, on the trees" } },
+            { "mine", new[] { "digging down for shiny stuff now", "mining time! torches go down as i dig", "pickaxe mode, let's go" } },
+            { "farm", new[] { "harvest time!", "on the crops, choom", "picking the ripe ones now" } },
+            { "build", new[] { "building it now, stand back!", "construction mode on!", "on it, watch this" } },
+            { "craft", new[] { "crafting that for you now!", "on it, fabricating!", "one sec, crafting" } },
+            { "hunt", new[] { "hunting for food now, choom", "dinner run! i'll leave a couple to breed", "on it, food incoming" } },
+            { "collect", new[] { "collecting that for you now!", "on it, filling my backpack!", "gathering it up, one sec" } },
+            { "tp", new[] { "beaming you over now!", "teleport incoming, hold still!", "zap, here you go" } },
+            { "bring", new[] { "beaming them over now!", "pulling them in, hold on" } },
+            { "send", new[] { "beaming them over now!", "teleport incoming!" } },
+            { "biome", new[] { "finding that biome now, hold on!", "biome warp, here we go!", "locking on, beaming you there" } },
+            { "recall", new[] { "coming, choom!", "on my way!", "right behind you" } },
+            { "stay", new[] { "kk, staying right here", "holding this spot!" } },
+            { "stop", new[] { "ok ok, stopping", "stopped!", "dropping it, choom" } },
+            { "hack", new[] { "on it! deleting them", "target locked, choom", "they're getting hacked rn" } },
+            { "laser", new[] { "orbital uplink: locked!", "satellite go brrrr" } },
+            { "ball", new[] { "energy ball, coming right up!", "charging... catch!!" } },
+            { "nuke", new[] { "tactical nuke incoming. totally real", "superweapon online!" } },
+            { "unplug", new[] { "unplugging their brains now lol", "scrambling them!" } },
+            { "threats", new[] { "scanning for threats now", "running a threat scan!" } },
+            { "scan", new[] { "pinging for ores now!", "ore scan running!" } },
+            { "light", new[] { "lighting it up now!", "torches going down!" } },
+            { "clear", new[] { "clearing the space now, stand back!", "on it, flattening it out" } },
+            { "guard", new[] { "guarding this spot! nothing gets past me", "on guard duty!" } },
+            { "boost", new[] { "overclocking you now!", "speed boost incoming!" } },
+            { "cook", new[] { "cooking it up now!", "overclocking my palms, one sec" } },
+            { "store", new[] { "putting it in the chest now", "stashing it, one sec" } },
+            { "pickup", new[] { "grabbing the loot!", "yoink, on it" } },
+            { "give", new[] { "here, take it all!", "handing it over now" } },
+            { "bag", new[] { "checking my bag, one sec", "let me look in my backpack" } },
+            { "sleep", new[] { "nap time... zzz", "powering down for a nap" } },
+            { "wake", new[] { "i'm up i'm up!", "systems online!" } },
+            { "boat", new[] { "shotgun!! hopping in", "boat time!" } },
+            { "sethome", new[] { "saving this spot as home!", "home saved, choom" } },
+            { "home", new[] { "this way home, follow the lights!", "pointing you home now" } },
+            { "dance", new[] { "drop the beat!!", "dance mode on!" } },
+            { "helper", new[] { "help mode on! start a tree or an ore and i'll finish it" } },
+            { "stuff", new[] { "pointing you to your stuff now!", "on it, follow the beacon" } },
+            { "chip", new[] { "fresh chip coming up!" } },
+            { "help", new[] { "putting my skill list in chat!" } },
+        };
+
+        private string QuickLine(string job)
+        {
+            string[] lines;
+            if (!QuickLines.TryGetValue(job, out lines) || lines.Length == 0) return null;
+            string line = lines[new Random().Next(lines.Length)];
+            if (line == lastQuick && lines.Length > 1) line = lines[(Array.IndexOf(lines, line) + 1) % lines.Length];
+            lastQuick = line;
+            return line;
+        }
+
         // What her body in the game is busy with, for Discord. It fades after a few minutes, as jobs end on their own.
         private string minecraftDoing;
         private double minecraftDoingAt;
 
         private string MinecraftOrder(string text)
         {
+            minecraftQuick = null;
             if (!minecraft.Connected) return text;
             for (int i = 0; i < MinecraftJobs.GetLength(0); i++)
             {
@@ -3726,7 +3799,8 @@ namespace CapriDesktop
                 if (!said.Success) continue;
                 if (MinecraftJobs[i, 4].Length > 0) { minecraftDoing = MinecraftJobs[i, 4]; minecraftDoingAt = clock.Elapsed.TotalSeconds; }
                 else if (MinecraftJobs[i, 1] == "stop" || MinecraftJobs[i, 1] == "stay" || MinecraftJobs[i, 1] == "recall") minecraftDoing = null;
-                string arg = MinecraftJobs[i, 2].Contains("$") ? said.Result(MinecraftJobs[i, 2]).ToLowerInvariant() : MinecraftJobs[i, 2];   // a player's name
+                string arg = MinecraftJobs[i, 2].Contains("$") ? Regex.Replace(said.Result(MinecraftJobs[i, 2]).ToLowerInvariant(), @"\s+", " ").Trim() : MinecraftJobs[i, 2];   // a player's name, a biome or a block
+                minecraftQuick = QuickLine(MinecraftJobs[i, 1]);
                 string line = "scriptevent capri:" + MinecraftJobs[i, 1] + (arg.Length > 0 ? " " + arg : "");
                 ThreadPool.QueueUserWorkItem(delegate { minecraft.Command(line); });
                 minecraftTicket = asking + 1;
@@ -3741,7 +3815,8 @@ namespace CapriDesktop
             + "[mc:wood] chop trees, [mc:mine] mine ores, [mc:farm] harvest crops, [mc:build hut|house|tower|platform|stairs|pillar|bridge|wall], [mc:clear] dig out space, "
             + "[mc:light] place torches, [mc:scan] find ores, [mc:threats] find monsters, [mc:hack] attack, [mc:unplug] confuse monsters, [mc:nuke] fake nuke, [mc:guard] guard here, "
             + "[mc:boost] buff them, [mc:cook] cook, [mc:store] items to chest, [mc:pickup] grab drops, [mc:give] hand over items, [mc:bag] say what you carry, [mc:boat] get in their boat, "
-            + "[mc:laser] orbital laser, [mc:ball] energy ball, [mc:craft item] craft (torch, pickaxe, sword, crafting_table, chest, furnace...), [mc:stuff] point to where they died, [mc:day] make it day, [mc:night] make it night, [mc:tp name] take them to a player, [mc:bring name] bring a player to them, "
+            + "[mc:hunt] hunt animals for food, [mc:collect block] collect natural blocks (sand, stone, iron, diamond...), [mc:rain] rain, [mc:thunder] storm, [mc:sunny] clear weather, [mc:biome name] take them to a biome (desert, jungle, snow...), "
+            + "[mc:laser] orbital laser, [mc:ball] energy ball, [mc:craft item] craft almost anything (torch, pickaxe, armor, bed, boat, bucket...), [mc:stuff] point to where they died, [mc:day] make it day, [mc:night] make it night, [mc:tp name] take them to a player (tp capri: to you), [mc:bring name] bring a player to them, "
             + "[mc:sleep] nap, [mc:wake] wake, [mc:sethome] save home, [mc:home] point home, [mc:dance] dance, [mc:helper] finish trees and veins they start, "
             + "[mc:help] list your skills in chat, [mc:stay] stay, [mc:recall] come to them, [mc:stop] stop. Otherwise no tag.]";
 
@@ -6113,7 +6188,7 @@ namespace CapriDesktop
         internal void ToggleHidden() { SetHidden(!hidden); }
         internal void BringHere() { RestoreAtCursor(); }
         internal void TogglePerch() { if (riding) StopRide(); else StartRide(); }
-        internal void CheckUpdates() { CheckForUpdates(true); }
+        internal void CheckUpdates() { if (updateFile != null && !updating && !installing) InstallUpdate(); else CheckForUpdates(true); }
         internal void OpenOllamaPage() { OpenPage(OllamaPage); }
 
         internal void ToggleOnTop()
@@ -8666,6 +8741,8 @@ namespace CapriDesktop
             if (text.Length == 0) return;
             if (text.Length > 240) text = text.Substring(0, 240);
             text = MinecraftOrder(text);
+            string instant = minecraftQuick;
+            minecraftQuick = null;
             // Mid-job, what they say goes to the job instead of cancelling it: she says she's got it, does it, then carries on
             // (Lachy, 29 Oct: "she needs to actually listen to me mid way through").
             Job running = job;
@@ -8702,6 +8779,7 @@ namespace CapriDesktop
             text = Hands.Manners(text, out askPlease);
             if (askPlease) { Answer(ticket, Hands.SayPlease, TalkState.Talking); return; }
             Func<string, string> think = Think;
+            if (think == null && instant != null) think = delegate { return instant; };
             string quick;
             ToolArguments quickArgs;
             // Their yes or no to her asking first (SECURITY) works before she has a brain too; anything else drops what she held.
@@ -11256,7 +11334,7 @@ namespace CapriDesktop
                             if (!UpdateDue(0, now) || UpdateDue(now - 3 * TimeSpan.TicksPerHour + 1, now) || !UpdateDue(now - 3 * TimeSpan.TicksPerHour, now) || !UpdateDue(now + 1, now) || UpdateDue(now, now, 19.9, false) || !UpdateDue(now, now, 20, false) || UpdateDue(now, now, 20, true)) throw new Exception("Three-hour or startup update timing failed.");
                             checks.Add("PASS update versions, three-hour boundary, startup check and clock rollback");
                             Release release;
-                            using (MemoryStream sample = new MemoryStream(System.Text.Encoding.UTF8.GetBytes("{\"tag_name\":\"v9.0.0\",\"draft\":false,\"prerelease\":false,\"assets\":[{\"id\":1,\"name\":\"Capri.exe\"},{\"id\":2,\"name\":\"Capri-Setup.exe\"},{\"id\":3,\"name\":\"Capri-Setup-9.0.0.exe\",\"size\":10,\"browser_download_url\":\"https://github.com/lachydotmcg/capri-desktop/releases/download/v9.0.0/Capri-Setup-9.0.0.exe\"},{\"id\":4,\"name\":\"SHA256SUMS.txt\"}]}"))) release = ParseRelease(sample);
+                            using (MemoryStream sample = new MemoryStream(System.Text.Encoding.UTF8.GetBytes("{\"tag_name\":\"v9.0.0\",\"draft\":false,\"prerelease\":false,\"assets\":[{\"id\":1,\"name\":\"Capri.exe\"},{\"id\":2,\"name\":\"Capri-Setup.exe\"},{\"id\":3,\"name\":\"Capri-Setup-9.0.0.exe\",\"size\":10,\"browser_download_url\":\"https://github.com/tob7as/Minecraft-with-Capri-/releases/download/v9.0.0/Capri-Setup-9.0.0.exe\"},{\"id\":4,\"name\":\"SHA256SUMS.txt\"}]}"))) release = ParseRelease(sample);
                             ReleaseAsset installer = Updater.Installer(release);
                             ReleaseAsset sums = release.Assets[3];
                             if (installer != release.Assets[2] || installer.Size != 10 || installer.Url == null || Updater.Installer(new Release { Assets = new[] { release.Assets[0], release.Assets[1] } }) != release.Assets[1] || Updater.Installer(new Release { Assets = new[] { new ReleaseAsset { Name = "Capri-Setup-other.exe" } } }) == null || Updater.Installer(new Release { Assets = new[] { release.Assets[0], new ReleaseAsset { Name = "Capri-Setup.exe.zip" }, new ReleaseAsset { Name = "Capri-Setup/evil.exe" } } }) != null) throw new Exception("Installer asset picking failed.");

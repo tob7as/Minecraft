@@ -163,6 +163,7 @@ namespace CapriDesktop
         private readonly Label blackwallNote;
         private readonly Toggle pcControl;
         private readonly Label updateNote;
+        private readonly Key updateButton;
         private readonly Key keyHelp;
         private readonly Label shortcut;
         private bool shortcutReady;
@@ -416,7 +417,7 @@ namespace CapriDesktop
             showHide = Lower(Make("Hide Capri", 28, 206 + v, 104, 28, delegate { capri.ToggleHidden(); }));
             Lower(Make("Bring here", 140, 206 + v, 104, 28, delegate { capri.BringHere(); }));
             perch = Lower(Make("Ride cursor", 252, 206 + v, 104, 28, delegate { capri.TogglePerch(); }));
-            Lower(Make("Check for updates", 28, 250 + v, 150, 28, delegate { capri.CheckUpdates(); }));
+            updateButton = Lower(Make("Update from GitHub", 28, 250 + v, 150, 28, delegate { capri.CheckUpdates(); }));
             Key help = Lower(Make("Help", 186, 250 + v, 62, 28, delegate { capri.OpenHelp(); }));
             help.AccessibleName = "Help: ask Capri on the website";
             Key quit = Lower(Make("Quit Capri", 256, 250 + v, 100, 28, delegate { capri.Quit(); }));
@@ -2452,6 +2453,8 @@ namespace CapriDesktop
         }
 
         internal string UpdateStatus { get { return updateNote.Text; } }
+
+        internal void UpdateReady(bool ready) { if (updateButton != null) updateButton.Text = ready ? "Install update" : "Update from GitHub"; }
 
         internal string VoiceStatus { get { return voiceNote.Text + " | " + voiceEntry.Box.Text + " | " + speechModels.Text + " | " + connect.Text; } }
         private void Connect()
