@@ -2,7 +2,9 @@
 
 ## ⬇️ Download
 
-<a href="https://github.com/tob7as/Minecraft/raw/main/download/Capri-X-Setup.exe"><img src="images/download-windows.png" alt="Download for Windows"></a>
+<a href="https://github.com/tob7as/Minecraft/raw/main/addon/dist/Capri_Companion_v1.5.0.mcaddon"><img src="images/download-minecraft.png" alt="Download for Minecraft"></a>&nbsp;&nbsp;<a href="https://github.com/tob7as/Minecraft/raw/main/download/Capri-X-Setup.exe"><img src="images/download-windows.png" alt="Download for Windows"></a>
+
+**Minecraft:** the add-on. Double-click it and Minecraft imports it. **Windows:** the Capri X app, so you can talk to her.
 
 | What | Download | |
 |---|---|---|
