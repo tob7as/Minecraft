@@ -51,6 +51,12 @@ Capri X is built on [Lachy's Capri](https://github.com/lachydotmcg/capri-desktop
 - **"Hey Capri":** she only answers when her name is said, only her name pauses her screen comments, and comments come back after 30 seconds of quiet.
 - Her voice server makes each sentence in one go, so she starts talking sooner.
 
+### The More settings window
+
+Where most of these live: Mainframe → **Settings** → **More settings**.
+
+<img src="images/more-settings.webp" alt="Capri X's More settings window: Think with Claude, Music, Stream, Vibe, Clip that, Weather, Memory vault and Minecraft" width="400">
+
 ## See her in action
 
 ![Capri in Minecraft: say hello and she answers in a chat bubble, with her body standing beside you](images/capri-in-game.webp)
@@ -105,11 +111,7 @@ With the app, you can speak or type to her on your PC ("capri, chop some wood") 
 
 The chip's **Link** page in game shows these steps too.
 
-### The More settings window
-
-<img src="images/more-settings.webp" alt="Capri X's More settings window: Think with Claude, Music, Stream, Vibe, Clip that, Weather, Memory vault and Minecraft" width="400">
-
-Turn on **Play Minecraft with me** at the bottom. The **Memory vault** section is where you pick an Obsidian vault for her notes.
+The [More settings window](#the-more-settings-window) is pictured above: **Play Minecraft with me** is at the bottom.
 
 <details><summary>Build the app yourself instead</summary>
 
