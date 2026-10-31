@@ -1,5 +1,15 @@
 # Capri for Minecraft
 
+## ⬇️ Download
+
+| What | Download | |
+|---|---|---|
+| **Minecraft add-on** | [**Capri_Companion_v1.5.0.mcaddon**](https://github.com/tob7as/Minecraft/raw/main/addon/dist/Capri_Companion_v1.5.0.mcaddon) | Double-click it, Minecraft imports it |
+| **Capri X app** (Windows) | [**Capri-X-Setup.exe**](https://github.com/tob7as/Minecraft/raw/main/download/Capri-X-Setup.exe) | Run it to install |
+| App, no install | [Capri-X.exe](https://github.com/tob7as/Minecraft/raw/main/download/Capri-X.exe) | Runs on its own |
+
+Click a link and the download starts. Windows may say it "protected your PC" because the app isn't signed: click **More info → Run anyway**. Then follow [Setup](#setup) below.
+
 Two parts:
 
 - **[addon/](addon/)**: the Capri Companion add-on for Minecraft Bedrock (1.26.50+). Grab `addon/dist/Capri_Companion_v1.5.0.mcaddon` and double-click it to import. Everything she can do is in [addon/README.md](addon/README.md).
@@ -9,7 +19,7 @@ Two parts:
 
 ### 1. The add-on (needed)
 
-1. Download [`addon/dist/Capri_Companion_v1.5.0.mcaddon`](addon/dist/Capri_Companion_v1.5.0.mcaddon) and double-click it. Minecraft opens and imports both packs.
+1. Download [`Capri_Companion_v1.5.0.mcaddon`](https://github.com/tob7as/Minecraft/raw/main/addon/dist/Capri_Companion_v1.5.0.mcaddon) and double-click it. Minecraft opens and imports both packs.
 2. Make or edit a world. Under **Behavior Packs** turn on **Capri Companion**. The resource pack comes with it.
 3. Join the world. You get **Capri's chip** in your inventory. Use it to open her Mainframe, then press **Summon**. You can also type `/capri summon`.
 4. Type `/capri help` to see everything she can do. Tap her to make her stay or follow. Sneak and tap her for her job menu.
@@ -20,7 +30,7 @@ Two parts:
 
 With the app, you can speak or type to her on your PC ("capri, chop some wood") and her body in the game does it.
 
-1. Download [`download/Capri-X-Setup.exe`](download/Capri-X-Setup.exe) and run it. (Prefer no install? [`download/Capri-X.exe`](download/Capri-X.exe) runs on its own.) Windows 10 or 11 only. Windows may say it "protected your PC" because the app isn't signed: click **More info → Run anyway**.
+1. Download [`Capri-X-Setup.exe`](https://github.com/tob7as/Minecraft/raw/main/download/Capri-X-Setup.exe) and run it. (Prefer no install? [`Capri-X.exe`](https://github.com/tob7as/Minecraft/raw/main/download/Capri-X.exe) runs on its own.) Windows 10 or 11 only. Windows may say it "protected your PC" because the app isn't signed: click **More info → Run anyway**.
    This version is its own app: it installs to `%LocalAppData%\CapriMC` and keeps its settings, keys and memories there, apart from any other Capri you have.
 2. Open it and pick her brain and voice in the Mainframe. [app/README.md](app/README.md) explains the options, including free ones.
 3. In Capri X, open the Mainframe's **Settings** page, click **More settings**, and turn on **Play Minecraft with me** in the Minecraft section.
