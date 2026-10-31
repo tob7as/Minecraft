@@ -8,13 +8,13 @@
 
 ## ⬇️ Download
 
-<a href="https://github.com/tob7as/Minecraft-with-Capri-/releases/latest/download/Capri_Companion_v1.6.0.mcaddon"><img src="images/download-minecraft.png" alt="Download for Minecraft"></a>&nbsp;&nbsp;<a href="https://github.com/tob7as/Minecraft-with-Capri-/releases/latest/download/Capri-X-Setup.exe"><img src="images/download-windows.png" alt="Download for Windows"></a>
+<a href="https://github.com/tob7as/Minecraft-with-Capri-/releases/latest/download/Capri_Companion_v1.7.0.mcaddon"><img src="images/download-minecraft.png" alt="Download for Minecraft"></a>&nbsp;&nbsp;<a href="https://github.com/tob7as/Minecraft-with-Capri-/releases/latest/download/Capri-X-Setup.exe"><img src="images/download-windows.png" alt="Download for Windows"></a>
 
 **Minecraft:** the add-on. Double-click it and Minecraft imports it. **Windows:** the Capri X app, so you can talk to her.
 
 | What | Download | |
 |---|---|---|
-| **Minecraft add-on** | [**Capri_Companion_v1.6.0.mcaddon**](https://github.com/tob7as/Minecraft-with-Capri-/releases/latest/download/Capri_Companion_v1.6.0.mcaddon) | Double-click it, Minecraft imports it |
+| **Minecraft add-on** | [**Capri_Companion_v1.7.0.mcaddon**](https://github.com/tob7as/Minecraft-with-Capri-/releases/latest/download/Capri_Companion_v1.7.0.mcaddon) | Double-click it, Minecraft imports it |
 | **Capri X app** (Windows) | [**Capri-X-Setup.exe**](https://github.com/tob7as/Minecraft-with-Capri-/releases/latest/download/Capri-X-Setup.exe) | Run it to install |
 | App, no install | [Capri-X.exe](https://github.com/tob7as/Minecraft-with-Capri-/releases/latest/download/Capri-X.exe) | Runs on its own |
 
@@ -28,7 +28,9 @@ Capri X is built on [Lachy's Capri](https://github.com/lachydotmcg/capri-desktop
 - **She plays Minecraft Bedrock with you.** Connect with `/connect localhost:19131` and her body in the game follows your orders.
 - **Voice orders for her body:** chop wood, mine, fight, build, dance, craft almost anything, hunt for food, collect blocks, find your stuff, clear monsters around you, teleport players (to each other or to her), warp you to a biome, set day or night, make it rain or thunder, plus the orbital laser and energy ball. If no phrase matches, her brain picks the job.
 - **Instant answers:** common orders like "make it day" get a quick reply ("making it day now choom!") straight away, so her brain doesn't have to think about them.
-- **New in add-on 1.6:** 100 health shown over her head, redstone heals her, torches in dark tunnels, a rare new voice line, and a better chip menu with Warp and Sky pages. All in [addon/README.md](addon/README.md).
+- **New voice orders in 1.7:** "capri kill zombies", "capri protect me", "capri hack <player>" (a 20-second prank), EMP, mantis blades, monowire and synapse burnout, each with its own instant voice line.
+- **She talks about the game:** she says her game chat lines out loud, keeps you posted while a job runs, and knows what just happened in the game when you talk to her. Her instant lines only play while she's connected to Minecraft.
+- **New in add-on 1.7:** kill orders, protect mode, the hijack prank, four cyberware attacks, a real tactical nuke, a cooler orbital strike and ore scan, head pats, new dances and poses, about 40 new recipes and a new chip menu look. All in [addon/README.md](addon/README.md).
 - **Discord shows she's playing Minecraft** while she's in the game.
 
 **🧠 Her brain**
@@ -84,7 +86,7 @@ Two parts:
 
 ### 1. The add-on (needed)
 
-1. Download [`Capri_Companion_v1.6.0.mcaddon`](https://github.com/tob7as/Minecraft-with-Capri-/releases/latest/download/Capri_Companion_v1.6.0.mcaddon) and double-click it. Minecraft opens and imports both packs.
+1. Download [`Capri_Companion_v1.7.0.mcaddon`](https://github.com/tob7as/Minecraft-with-Capri-/releases/latest/download/Capri_Companion_v1.7.0.mcaddon) and double-click it. Minecraft opens and imports both packs.
 2. Make or edit a world. Under **Behavior Packs** turn on **Capri Companion**. The resource pack comes with it.
 3. Join the world. You get **Capri's chip** in your inventory. Use it to open her Mainframe, then press **Summon**. You can also type `/capri summon`.
 4. Type `/capri help` to see everything she can do. Tap her to make her stay or follow. Sneak and tap her for her job menu.

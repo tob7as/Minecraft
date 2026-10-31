@@ -25,8 +25,15 @@ namespace CapriDesktop
         internal event Action<string, string> Chat;
         internal event Action<string, System.Collections.Generic.Dictionary<string, object>> Game;
         internal event Action<string> Status;
+        // The Capri Companion add-on's feed (her state and what just happened), read with "/capri feed" about once a second.
+        internal event Action<System.Collections.Generic.Dictionary<string, object>> Feed;
 
         private volatile int run;
+        private readonly System.Collections.Generic.Dictionary<string, Action<System.Collections.Generic.Dictionary<string, object>>> waiting =
+            new System.Collections.Generic.Dictionary<string, Action<System.Collections.Generic.Dictionary<string, object>>>();
+        private DateTime lastFeed = DateTime.MinValue;
+        // True while the add-on answers the feed: then her body says its own lines in chat, so the app doesn't repeat them.
+        internal bool FeedLive { get { return send != null && (DateTime.UtcNow - lastFeed).TotalSeconds < 5; } }
         private readonly object sending = new object();
         private Func<string, bool> send;
         internal string Shown { get; private set; }
@@ -51,11 +58,15 @@ namespace CapriDesktop
             worker.IsBackground = true;
             worker.Name = "Minecraft link";
             worker.Start();
+            Thread poll = new Thread(delegate() { Poll(mine); });
+            poll.IsBackground = true;
+            poll.Name = "Minecraft feed";
+            poll.Start();
         }
 
         internal void Stop() { run++; Drop(); Report("Minecraft link off."); }
 
-        private void Drop() { lock (sending) send = null; }
+        private void Drop() { lock (sending) send = null; lock (waiting) waiting.Clear(); lastFeed = DateTime.MinValue; }
 
         private void Report(string line) { Shown = line; Action<string> heard = Status; if (heard != null) heard(line); }
 
@@ -83,6 +94,67 @@ namespace CapriDesktop
             return Command("tellraw @a " + raw);
         }
 
+        // A command whose answer matters: the game's commandResponse (same requestId) goes to `reply`, on the link's thread.
+        internal bool Ask(string line, Action<System.Collections.Generic.Dictionary<string, object>> reply)
+        {
+            Func<string, bool> to;
+            lock (sending) to = send;
+            if (to == null) return false;
+            var header = Header("commandRequest");
+            string id = (string)header["requestId"];
+            lock (waiting) { if (waiting.Count > 20) waiting.Clear(); waiting[id] = reply; }
+            var request = new System.Collections.Generic.Dictionary<string, object>
+            {
+                { "header", header },
+                { "body", new System.Collections.Generic.Dictionary<string, object> { { "version", 1 }, { "commandLine", line }, { "origin", new System.Collections.Generic.Dictionary<string, object> { { "type", "player" } } } } }
+            };
+            if (to(Json.Serialize(request))) return true;
+            lock (waiting) waiting.Remove(id);
+            return false;
+        }
+
+        // The feed: one "/capri feed" in flight at a time, about once a second. Without the add-on (or an older one) the
+        // answer isn't a feed, so after a few misses she only tries once a minute.
+        private void Poll(int mine)
+        {
+            int misses = 0;
+            DateTime asked = DateTime.MinValue, pausedUntil = DateTime.MinValue;
+            bool flying = false;
+            while (mine == run)
+            {
+                Thread.Sleep(1200);
+                if (send == null) { misses = 0; flying = false; continue; }
+                DateTime now = DateTime.UtcNow;
+                if (now < pausedUntil || (flying && (now - asked).TotalSeconds < 5)) continue;
+                flying = true;
+                asked = now;
+                bool sent = Ask("capri feed", delegate(System.Collections.Generic.Dictionary<string, object> body)
+                {
+                    flying = false;
+                    var feed = ParseFeed(body);
+                    if (feed == null) { if (++misses >= 5) { misses = 0; pausedUntil = DateTime.UtcNow.AddSeconds(60); } return; }
+                    misses = 0;
+                    lastFeed = DateTime.UtcNow;
+                    var heard = Feed;
+                    if (heard != null) heard(feed);
+                });
+                if (!sent) flying = false;
+            }
+        }
+
+        private static System.Collections.Generic.Dictionary<string, object> ParseFeed(System.Collections.Generic.Dictionary<string, object> body)
+        {
+            string text = Text(body, "statusMessage") ?? Text(body, "message") ?? "";
+            int start = text.IndexOf("{\"v\":", StringComparison.Ordinal);
+            if (start < 0) return null;
+            try
+            {
+                var feed = Json.Deserialize<System.Collections.Generic.Dictionary<string, object>>(text.Substring(start));
+                return feed != null && feed.ContainsKey("s") ? feed : null;
+            }
+            catch (Exception) { return null; }
+        }
+
         private static System.Collections.Generic.Dictionary<string, object> Header(string purpose)
         {
             return new System.Collections.Generic.Dictionary<string, object>
@@ -108,6 +180,14 @@ namespace CapriDesktop
             catch (Exception) { return; }
             var header = Field(packet, "header");
             var body = Field(packet, "body");
+            if (header != null && body != null && Text(header, "messagePurpose") == "commandResponse")
+            {
+                string id = Text(header, "requestId") ?? "";
+                Action<System.Collections.Generic.Dictionary<string, object>> reply;
+                lock (waiting) { if (waiting.TryGetValue(id, out reply)) waiting.Remove(id); }
+                if (reply != null) reply(body);
+                return;
+            }
             if (header == null || body == null || Text(header, "messagePurpose") != "event") return;
             string name = Text(header, "eventName") ?? Text(body, "eventName");
             if (name == "PlayerMessage")

@@ -6,7 +6,7 @@ Capri, the neon-pink hologram netrunner AI, as a companion that follows you arou
 
 ## Install
 
-1. Download [Capri_Companion_v1.6.0.mcaddon](https://github.com/tob7as/Minecraft-with-Capri-/releases/latest/download/Capri_Companion_v1.6.0.mcaddon) and double-click it. Minecraft imports both packs.
+1. Download [Capri_Companion_v1.7.0.mcaddon](https://github.com/tob7as/Minecraft-with-Capri-/releases/latest/download/Capri_Companion_v1.7.0.mcaddon) and double-click it. Minecraft imports both packs.
 2. Open a world, go to **Edit → Behavior Packs**, and activate **Capri Companion | Behavior**. The resource pack comes along with it.
 3. Join the world and type `/capri summon`, or use the **Spawn Capri** egg from the creative inventory. She tears in through a neon-pink rift.
 4. The first time you join, you get **Capri's Neural Chip**. Use it (right-click / hold) to open her Mainframe. It stays in your inventory when you die. Lost it? `/capri chip`.
@@ -82,6 +82,25 @@ When a monster is 4–13 blocks away, she breaks into pink and green fragments (
 
 When 3+ monsters close in (or on `/capri unplug`), she hacks up to five of them: green static, floating question marks and a glitched note-block tune, and they spin and stagger about with Slowness and Weakness for 4 seconds. "Oops! I unplugged their braincells!" Bedrock's scripting can't wipe a mob's target, so this works by making them spin and wander rather than truly forgetting you.
 
+### New in 1.7
+
+- **"Kill ___"** (`/capri kill zombies`, `/capri kill "5 skeletons"`, `/capri kill everything`): she hunts that mob down until they're gone, then tells you how many she got. If there are none nearby, she says so. She never touches pets, named mobs, villagers or other players.
+- **Protect me** (`/capri protect`, or say "capri protect me"): "okayyy! coming choom". For 2 minutes she sticks right next to you in a guard stance, gives you Resistance and zaps anything that hurts you.
+- **Hack a player, as a prank** (`/capri hack <player>`): "SYSTEM HIJACKED". For 20 seconds she takes over their movement and camera and makes them walk in circles, spin, hop and dance, then gives control back. They're shielded from damage while it lasts.
+- **New cyberware attacks**, on their own in fights or when you ask: **EMP** (shocks and slows every monster within 10 blocks), **Mantis Blades** (blinks in and slashes three times), **Monowire** (whips up to 4 monsters and pulls them in) and **Synapse Burnout** (fries the toughest monster's brain).
+- **A real Tactical Nuke** now: up to 16 damage to monsters within 8 blocks, sets the close ones on fire, with a double shockwave and a camera flash.
+- **A bigger Orbital Strike**: a lock-on with warning beeps, then a thick beam for 14 damage plus splash.
+- **A cooler ore scan**: three scan waves ping outward, then every ore gets marked in its own colour, nearest first, with beams over the best three kinds.
+- **Head pats**: tap her head with an empty hand. She gets all happy about it.
+- **"Good boy"**: kill 5 monsters in quick succession and she tells you you're a good boy.
+- **She says hi** with a wave when you join.
+- **New dances and poses**: a glitchy robot dance, a neon sway, a happy pose, a guard stance and a wave.
+- **More glitches** now and then, and she sits on your furniture more often when she's chilling.
+- **She reacts to the world**: nightfall, morning, low health, a creeper sneaking up, and you finding diamonds.
+- **About 40 new recipes**: quartz, glowstone, polished stone, slime blocks, mud bricks, cut copper, repeaters, comparators, daylight detectors, crafters, ender eyes, ender chests, respawn anchors, netherite ingots, beacons, conduits, recovery compasses, armour stands, lecterns, beehives, decorated pots, brushes, candles and more. The Craft page has a new **Magic + Nether** group.
+- **A new chip menu look**, cyberpunk style, with a tip: sneak and tap her for her quick command menu.
+- **With the Capri X app (1.7.0)**: she says her game chat lines out loud, keeps you posted while a job runs, and knows what just happened in the game when you talk to her.
+
 ### New in 1.6
 
 - **Crafts almost anything** (`/capri craft iron pickaxe`, `/capri craft 16 torches`, `/capri craft armor`, or the chip's **Craft** page): tools and weapons of every tier, all four armour pieces (or a full set), bows, arrows, shields, buckets, shears, compasses, beds, boats, doors, fences, lanterns, rails, pistons, hoppers, TNT, food like bread, cake and golden apples, workstations, storage blocks and more. She makes the parts herself (planks, sticks, slabs, paper, nuggets). The Craft page groups recipes and ticks the ones she can make right now, or type anything.
@@ -119,12 +138,11 @@ When 3+ monsters close in (or on `/capri unplug`), she hacks up to five of them:
 - **Day and night** (`/capri day`, `/capri night`): a sun or moon sigil, a column of light, she spins, the sky changes.
 - **Teleport players** (`/capri tp <name>` takes you to them, `/capri bring <name>` brings them to you).
 
-### Tactical nuke (fake)
+### Tactical nuke
 
-Rebuilt as a proper ultimate: a sigil opens under her, the 6-block blast zone is marked in red-orange, energy spirals and is sucked into the orb, the camera shakes harder and harder... then a white flash, a ground shockwave, a column of light, a pink mushroom cloud and shards raining down. The sound is still a tiny squeaky pop.
+A proper ultimate: a sigil opens under her, the blast zone is marked in red-orange, energy spirals and is sucked into the orb, the camera shakes harder and harder... then a white flash, a double ground shockwave, a column of light, a pink mushroom cloud and shards raining down.
 
-
-When 4+ monsters swarm her (or on `/capri nuke`), she raises a huge glowing orb over her head with red warning sparks and a dramatic charge-up... then it pops with a tiny squeak into a pink ring and confetti. Every monster within 6 blocks is blown back. Nothing takes damage. "TACTICAL NUCLEAR— pfft! HAHAHA! You should've seen your face!" 90-second cooldown.
+When 4+ monsters swarm her (or on `/capri nuke`), she charges it over her head with red warning sparks. Since 1.7 it's real: every monster within 8 blocks takes up to 16 damage (more the closer they are), the close ones catch fire, and they're all blown back. You and other players are never hurt. 90-second cooldown.
 
 ### You touch, you get zapped (30 s cooldown)
 
