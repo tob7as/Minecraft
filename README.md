@@ -54,6 +54,13 @@ With the app, you can speak or type to her on your PC ("capri, chop some wood") 
 
 The chip's **Link** page in game shows these steps too.
 
+<details><summary>What the More settings window looks like</summary>
+
+<img src="images/more-settings.webp" alt="Capri X's More settings window: Think with Claude, Music, Stream, Vibe, Clip that, Weather, Memory vault and Minecraft" width="400">
+
+Turn on **Play Minecraft with me** at the bottom. The **Memory vault** section is where you pick an Obsidian vault for her notes.
+</details>
+
 <details><summary>Build the app yourself instead</summary>
 
 You need the Windows 10/11 SDK. In PowerShell, from the `app` folder:
