@@ -17,8 +17,8 @@ namespace CapriSetup
 {
     internal static class Program
     {
-        internal static string InstallPath { get { return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Capri"); } }
-        internal const string RegistryPath = "Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\Capri.Desktop";
+        internal static string InstallPath { get { return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "CapriMC"); } }
+        internal const string RegistryPath = "Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\CapriMC.Desktop";
 
         [STAThread]
         private static int Main(string[] args)
@@ -85,13 +85,13 @@ namespace CapriSetup
                 if (Ours(Application.ExecutablePath) || Ours(Path.Combine(Environment.SystemDirectory, "notepad.exe")) || Ours(Path.Combine(output, "missing.exe"))) throw new InvalidDataException("The installer takes other programs for Capri.");
                 string home = Path.Combine(output, "Capri");
                 if (!Inside(Path.Combine(home, "Capri.exe"), home) || !Inside(Path.Combine(home, "brain", "llama-server.exe"), home + "\\") || Inside(Path.Combine(output, "Capri2", "Capri.exe"), home) || Inside(Path.Combine(Environment.SystemDirectory, "notepad.exe"), home) || Inside(home, home)) throw new InvalidDataException("The uninstaller would close the wrong programs.");
-                string link = Path.Combine(output, "Capri.lnk");
+                string link = Path.Combine(output, "Capri X MC.lnk");
                 File.WriteAllText(link, "an old shortcut");
                 File.SetAttributes(link, FileAttributes.ReadOnly);
                 string unsaved = Shortcut(link, Path.Combine(output, "Capri.exe"));
                 if (unsaved != null || !string.Equals(LinkTarget(link), Path.Combine(output, "Capri.exe"), StringComparison.OrdinalIgnoreCase)) throw new InvalidDataException("The installer can't save her shortcut. " + unsaved);
                 File.Delete(link);
-                if (Shortcut(Path.Combine(output, "missing", "Capri.lnk"), Path.Combine(output, "Capri.exe")) == null) throw new InvalidDataException("A shortcut Windows can't save counts as saved.");
+                if (Shortcut(Path.Combine(output, "missing", "Capri X MC.lnk"), Path.Combine(output, "Capri.exe")) == null) throw new InvalidDataException("A shortcut Windows can't save counts as saved.");
                 using (SetupWindow preview = new SetupWindow(false))
                 {
                     preview.Show();
@@ -157,11 +157,11 @@ namespace CapriSetup
             }
             finally { if (File.Exists(temporary)) File.Delete(temporary); }
             File.Copy(Application.ExecutablePath, Path.Combine(destination, "Uninstall.exe"), true);
-            string unsaved = Shortcut(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Programs, Environment.SpecialFolderOption.Create), "Capri.lnk"), target);
-            string onDesktop = desktop ? Shortcut(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory, Environment.SpecialFolderOption.Create), "Capri.lnk"), target) : null;
+            string unsaved = Shortcut(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Programs, Environment.SpecialFolderOption.Create), "Capri X MC.lnk"), target);
+            string onDesktop = desktop ? Shortcut(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory, Environment.SpecialFolderOption.Create), "Capri X MC.lnk"), target) : null;
             using (RegistryKey key = Registry.CurrentUser.CreateSubKey(RegistryPath))
             {
-                key.SetValue("DisplayName", "Capri");
+                key.SetValue("DisplayName", "Capri X (Minecraft)");
                 key.SetValue("DisplayVersion", version);
                 key.SetValue("Publisher", "Capri fan project");
                 key.SetValue("InstallLocation", destination);
@@ -368,7 +368,7 @@ namespace CapriSetup
             try
             {
                 string destination = Path.GetFullPath(InstallPath);
-                string expected = Path.GetFullPath(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Capri"));
+                string expected = Path.GetFullPath(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "CapriMC"));
                 if (!string.Equals(destination, expected, StringComparison.OrdinalIgnoreCase) || !File.Exists(Path.Combine(destination, ".capri-install"))) throw new IOException("The Capri install marker could not be verified.");
                 CloseEverything(destination);
                 string uninstaller = Path.Combine(destination, "Uninstall.exe");
@@ -385,8 +385,8 @@ namespace CapriSetup
                     string folder = Path.Combine(destination, pack);
                     Patiently(delegate { if (Directory.Exists(folder)) Directory.Delete(folder, true); });
                 }
-                DeleteShortcut(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Programs), "Capri.lnk"), destination);
-                DeleteShortcut(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "Capri.lnk"), destination);
+                DeleteShortcut(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Programs), "Capri X MC.lnk"), destination);
+                DeleteShortcut(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "Capri X MC.lnk"), destination);
                 Startup.Clear(Path.Combine(destination, "Capri.exe"));
                 Registry.CurrentUser.DeleteSubKeyTree(RegistryPath, false);
                 Notice.Tell(null, "Capri has been removed.\n\nYour position and size settings were kept in " + destination + ".", "Capri", false);

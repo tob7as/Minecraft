@@ -32,7 +32,7 @@ namespace CapriDesktop
     // No API key: Claude calls her tools from the user's own Claude app, and she only does what Settings lets it.
     internal static class Link
     {
-        internal static readonly string PipeName = "CapriFixed.Link." + WindowsIdentity.GetCurrent().User.Value;
+        internal static readonly string PipeName = "CapriMC.Link." + WindowsIdentity.GetCurrent().User.Value;
 
         // Her tools as Claude sees them, each with the group that turns it on or off in Settings.
         internal static readonly string[,] Tools =

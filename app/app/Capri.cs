@@ -37,13 +37,13 @@ namespace CapriDesktop
             bool smoke = args.Length == 2 && args[0] == "--smoke-test";
             string identity = WindowsIdentity.GetCurrent().User.Value;
             bool first;
-            using (Mutex mutex = new Mutex(true, "Local\\CapriFixed.Desktop." + identity + (smoke ? ".Test" : ""), out first))
-            using (EventWaitHandle restore = new EventWaitHandle(false, EventResetMode.AutoReset, "Local\\CapriFixed.Restore." + identity + (smoke ? ".Test" : "")))
+            using (Mutex mutex = new Mutex(true, "Local\\CapriMC.Desktop." + identity + (smoke ? ".Test" : ""), out first))
+            using (EventWaitHandle restore = new EventWaitHandle(false, EventResetMode.AutoReset, "Local\\CapriMC.Restore." + identity + (smoke ? ".Test" : "")))
             {
                 if (!first) { Native.AllowSetForegroundWindow(-1); restore.Set(); return 0; }
                 try
                 {
-                    string data = smoke ? Path.GetFullPath(args[1]) : Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "CapriFixed");
+                    string data = smoke ? Path.GetFullPath(args[1]) : Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "CapriMC");
                     Brain.LogPath = Path.Combine(data, "errors.txt");
                     // Whatever ends her, their own cursor comes back, and a crash goes in errors.txt.
                     AppDomain.CurrentDomain.ProcessExit += delegate { HerCursor.Off(); };
@@ -3018,7 +3018,7 @@ namespace CapriDesktop
 
         private static bool Installed()
         {
-            try { return string.Equals(Path.GetFullPath(Application.ExecutablePath), Path.GetFullPath(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Capri", "Capri.exe")), StringComparison.OrdinalIgnoreCase); }
+            try { return string.Equals(Path.GetFullPath(Application.ExecutablePath), Path.GetFullPath(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "CapriMC", "Capri.exe")), StringComparison.OrdinalIgnoreCase); }
             catch (ArgumentException) { return false; }
             catch (NotSupportedException) { return false; }
             catch (IOException) { return false; }

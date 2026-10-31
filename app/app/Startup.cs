@@ -9,9 +9,9 @@ namespace CapriDesktop
     {
         internal static string RunKey = "Software\\Microsoft\\Windows\\CurrentVersion\\Run";
         internal static string ApprovedKey = "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\StartupApproved\\Run";
-        internal const string Name = "Capri X";
+        internal const string Name = "Capri X MC";
         // Its name before the rename, taken away whenever startup is set so Windows never starts two copies.
-        private const string OldName = "Capri Fixed";
+        private const string OldName = "Capri X MC (old)";
 
         internal static bool On(string exe)
         {

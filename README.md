@@ -21,8 +21,9 @@ Two parts:
 With the app, you can speak or type to her on your PC ("capri, chop some wood") and her body in the game does it.
 
 1. Download [`download/Capri-X-Setup.exe`](download/Capri-X-Setup.exe) and run it. (Prefer no install? [`download/Capri-X.exe`](download/Capri-X.exe) runs on its own.) Windows 10 or 11 only. Windows may say it "protected your PC" because the app isn't signed: click **More info → Run anyway**.
+   This version is its own app: it installs to `%LocalAppData%\CapriMC` and keeps its settings, keys and memories there, apart from any other Capri you have.
 2. Open it and pick her brain and voice in the Mainframe. [app/README.md](app/README.md) explains the options, including free ones.
-3. In Capri X, open **More settings** and turn on **Minecraft**.
+3. In Capri X, open the Mainframe's **Settings** page, click **More settings**, and turn on **Play Minecraft with me** in the Minecraft section.
 4. In Minecraft, turn on **cheats** for the world, then type this in chat:
    ```
    /connect localhost:19131
