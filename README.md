@@ -49,14 +49,22 @@ With the app, you can speak or type to her on your PC ("capri, chop some wood") 
 
 1. Download [`Capri-X-Setup.exe`](https://github.com/tob7as/Minecraft/raw/main/download/Capri-X-Setup.exe) and run it. (Prefer no install? [`Capri-X.exe`](https://github.com/tob7as/Minecraft/raw/main/download/Capri-X.exe) runs on its own.) Windows 10 or 11 only. Windows may say it "protected your PC" because the app isn't signed: click **More info → Run anyway**.
    This version is its own app: it installs to `%LocalAppData%\CapriMC` and keeps its settings, keys and memories there, apart from any other Capri you have.
-2. Open it and pick her brain and voice in the Mainframe. [app/README.md](app/README.md) explains the options, including free ones.
+2. Give her a brain (her AI) in the Mainframe. Both are free:
+   - **Free key:** press **Free key** and follow the steps to get a free NVIDIA key. Works on any PC, needs internet.
+   - **Set up her brain:** she runs on your own PC, with no key. Needs 8 GB of memory or more, and a 3 to 5 GB download.
+
+   Her free voice works straight away. Other voices and options are in [app/README.md](app/README.md).
 3. In Capri X, open the Mainframe's **Settings** page, click **More settings**, and turn on **Play Minecraft with me** in the Minecraft section.
 4. In Minecraft, turn on **cheats** for the world, then type this in chat:
    ```
    /connect localhost:19131
    ```
    If it won't connect, go to **Settings → General** in Minecraft and turn off **Require Encrypted Websockets**.
-5. Say or type "capri, ..." in the app or in game chat. She answers out loud and in chat.
+5. Talk to her:
+   - **With your voice:** click the **wave** button on her (or press **Ctrl + Alt + V**) to start voice chat, then say "Capri, ..." like "Capri, chop some wood". You need a mic.
+   - **By typing:** type "capri, ..." in game chat, or click the **pencil** on her.
+
+   She answers out loud and in chat, and her body in the game does it.
 
 The chip's **Link** page in game shows these steps too.
 
