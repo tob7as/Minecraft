@@ -53,6 +53,8 @@ Capri keeps her own notes about you: your name, what you like, things you ask he
 
 She has an Obsidian plugin too: **[Capri Neon City](https://github.com/tob7as/obsidian-Plugin)** turns your vault into a holographic 3D city, with Capri as the guide who chats, finds notes and flies you around. It works on its own, no app needed.
 
+![Capri Neon City: an Obsidian vault shown as a 3D neon city, with Capri chatting in the corner](images/capri-neon-city.webp)
+
 ## Credit
 
 Capri is made by Lachy: <https://github.com/lachydotmcg/capri-desktop>. Capri's art and animations are by her artist, who prefers to stay private. The app is shared under the original project's PolyForm Noncommercial License 1.0.0 ([app/LICENSE.md](app/LICENSE.md)). Those terms also cover the add-on, since it uses Capri's character.
