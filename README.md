@@ -2,6 +2,8 @@
 
 [![downloads](https://img.shields.io/github/downloads/tob7as/Minecraft-with-Capri-/total?label=downloads)](https://github.com/tob7as/Minecraft-with-Capri-/releases/latest)
 
+**[⬇️ Download](#️-download) · [✨ What Capri X adds](#what-capri-x-adds) · [🎬 See her in action](#see-her-in-action) · [🛠️ Setup](#setup)**
+
 ## ⬇️ Download
 
 <a href="https://github.com/tob7as/Minecraft-with-Capri-/releases/latest/download/Capri_Companion_v1.5.0.mcaddon"><img src="images/download-minecraft.png" alt="Download for Minecraft"></a>&nbsp;&nbsp;<a href="https://github.com/tob7as/Minecraft-with-Capri-/releases/latest/download/Capri-X-Setup.exe"><img src="images/download-windows.png" alt="Download for Windows"></a>
@@ -15,24 +17,6 @@
 | App, no install | [Capri-X.exe](https://github.com/tob7as/Minecraft-with-Capri-/releases/latest/download/Capri-X.exe) | Runs on its own |
 
 Click a link and the download starts. Windows may say it "protected your PC" because the app isn't signed: click **More info → Run anyway**. Then follow [Setup](#setup) below.
-
-## See her in action
-
-![Capri in Minecraft: say hello and she answers in a chat bubble, with her body standing beside you](images/capri-in-game.webp)
-
-Click a clip, then **View raw**, to download it with sound.
-
-| | |
-|---|---|
-| [![Capri dancing](images/dancing.webp)](videos/dancing.mp4)<br>**Dancing:** "drop the beat!!" | [![Capri fighting](images/fighting.webp)](videos/fighting.mp4)<br>**Fighting:** she takes on mobs with you |
-| [![Capri at day and night](images/day-and-night.webp)](videos/day-and-night.mp4)<br>**Day and night:** she reacts to sunrise, nightfall and sleep | [![Capri mining](images/mining.webp)](videos/mining.mp4)<br>**Mining:** "digging down for shiny stuff now" |
-
-🎙️ **You can tell her what to do with your voice!** With the Capri X app, just say "Capri, ..." out loud, like "Capri, chop some wood", and she does it in the game.
-
-Two parts:
-
-- **[addon/](addon/)**: the Capri Companion add-on for Minecraft Bedrock (1.26.50+). Grab `addon/dist/Capri_Companion_v1.5.0.mcaddon` and double-click it to import. Everything she can do is in [addon/README.md](addon/README.md).
-- **[app/](app/)**: Capri X, a fork of the Capri desktop companion with a Minecraft link. Say "capri, chop some wood" and her body in the game does it. Ready to run from [download/](download/).
 
 ## What Capri X adds
 
@@ -66,6 +50,24 @@ Capri X is built on [Lachy's Capri](https://github.com/lachydotmcg/capri-desktop
 - Closer to her **Edgerunners 2** personality, and she texts bubbly like the Capri in [Capri Neon City](https://github.com/tob7as/obsidian-Plugin).
 - **"Hey Capri":** she only answers when her name is said, only her name pauses her screen comments, and comments come back after 30 seconds of quiet.
 - Her voice server makes each sentence in one go, so she starts talking sooner.
+
+## See her in action
+
+![Capri in Minecraft: say hello and she answers in a chat bubble, with her body standing beside you](images/capri-in-game.webp)
+
+Click a clip, then **View raw**, to download it with sound.
+
+| | |
+|---|---|
+| [![Capri dancing](images/dancing.webp)](videos/dancing.mp4)<br>**Dancing:** "drop the beat!!" | [![Capri fighting](images/fighting.webp)](videos/fighting.mp4)<br>**Fighting:** she takes on mobs with you |
+| [![Capri at day and night](images/day-and-night.webp)](videos/day-and-night.mp4)<br>**Day and night:** she reacts to sunrise, nightfall and sleep | [![Capri mining](images/mining.webp)](videos/mining.mp4)<br>**Mining:** "digging down for shiny stuff now" |
+
+🎙️ **You can tell her what to do with your voice!** With the Capri X app, just say "Capri, ..." out loud, like "Capri, chop some wood", and she does it in the game.
+
+Two parts:
+
+- **[addon/](addon/)**: the Capri Companion add-on for Minecraft Bedrock (1.26.50+). Grab `addon/dist/Capri_Companion_v1.5.0.mcaddon` and double-click it to import. Everything she can do is in [addon/README.md](addon/README.md).
+- **[app/](app/)**: Capri X, a fork of the Capri desktop companion with a Minecraft link. Say "capri, chop some wood" and her body in the game does it. Ready to run from [download/](download/).
 
 ## Setup
 
